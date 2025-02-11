@@ -12,10 +12,10 @@ def categorize_article(article):
     result = classifier(article, CATEGORIES)
     return result['labels'][0] # Return the top predicted category
 
-# Example usage
-if __name__ == "__main__":
-    example_text = "Apple just announced the new iPhone with AI-powered features."
-    print("Category:", categorize_article(example_text))
+# === SUMMARIZATION ===
+summarizer = pipeline("summarization", model="sshleifer/distilbart-cnn-12-6")
 
-# === CLASSIFICATION ===
-
+def summarize_article(article):
+    """Summarizes a news article using a pre-trained transformer model"""
+    summary = summarizer(article, max_length=10, min_length=3, do_sample=False)
+    return summary[0]['summary_text']
