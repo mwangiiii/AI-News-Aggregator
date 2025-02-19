@@ -1,6 +1,5 @@
 from transformers import pipeline
 
-
 # === CLASSIFICATION ===
 # Load a pre-trained text classification model
 classifier = pipeline('zero-shot-classification', model="facebook/bart-large-mnli")
@@ -27,7 +26,3 @@ def analyze_sentiment(article):
      """Analyzes the sentiment of a news article."""
      result = sentiment_analyzer(article)
      return result[0]['label']
-
-if __name__ == "__main__":
-    example_text = "Apple just announced the new iPhone with AI-powered features."
-    print("Category:", analyze_sentiment(example_text))
